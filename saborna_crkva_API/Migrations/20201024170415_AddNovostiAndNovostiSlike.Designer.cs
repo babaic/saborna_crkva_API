@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using saborna_crkva_API.EF;
 
 namespace saborna_crkva_API.Migrations
 {
     [DbContext(typeof(MyContext))]
-    partial class MyContextModelSnapshot : ModelSnapshot
+    [Migration("20201024170415_AddNovostiAndNovostiSlike")]
+    partial class AddNovostiAndNovostiSlike
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -162,81 +164,11 @@ namespace saborna_crkva_API.Migrations
 
                     b.Property<int>("NovostiID");
 
-                    b.Property<byte[]>("Slika");
-
                     b.HasKey("NovostiSlikeID");
 
                     b.HasIndex("NovostiID");
 
                     b.ToTable("NovostiSlike");
-                });
-
-            modelBuilder.Entity("saborna_crkva_API.Models.Obavjestenja", b =>
-                {
-                    b.Property<int>("ObavjestenjaID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("DatumObjavljivanja");
-
-                    b.Property<string>("Naslov");
-
-                    b.Property<byte[]>("Slika");
-
-                    b.Property<string>("Text");
-
-                    b.HasKey("ObavjestenjaID");
-
-                    b.ToTable("Obavjestenja");
-                });
-
-            modelBuilder.Entity("saborna_crkva_API.Models.ObavjestenjaKategorije", b =>
-                {
-                    b.Property<int>("ObavjestenjaKategorijeID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Naziv");
-
-                    b.HasKey("ObavjestenjaKategorijeID");
-
-                    b.ToTable("ObavjestenjaKategorije");
-                });
-
-            modelBuilder.Entity("saborna_crkva_API.Models.ObavjestenjaKategorijeObavjestenja", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("ObavjestenjaID");
-
-                    b.Property<int>("ObavjestenjaKategorijeID");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ObavjestenjaID");
-
-                    b.HasIndex("ObavjestenjaKategorijeID");
-
-                    b.ToTable("ObavjestenjaKategorijeObavjestenja");
-                });
-
-            modelBuilder.Entity("saborna_crkva_API.Models.ObavjestenjaSlike", b =>
-                {
-                    b.Property<int>("ObavjestenjaSlikeID")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("ObavjestenjaID");
-
-                    b.Property<byte[]>("Slika");
-
-                    b.HasKey("ObavjestenjaSlikeID");
-
-                    b.HasIndex("ObavjestenjaID");
-
-                    b.ToTable("ObavjestenjaSlike");
                 });
 
             modelBuilder.Entity("saborna_crkva_API.Models.Role", b =>
@@ -398,27 +330,6 @@ namespace saborna_crkva_API.Migrations
                     b.HasOne("saborna_crkva_API.Models.Novosti", "Novosti")
                         .WithMany()
                         .HasForeignKey("NovostiID")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("saborna_crkva_API.Models.ObavjestenjaKategorijeObavjestenja", b =>
-                {
-                    b.HasOne("saborna_crkva_API.Models.Obavjestenja", "Obavjestenja")
-                        .WithMany()
-                        .HasForeignKey("ObavjestenjaID")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("saborna_crkva_API.Models.ObavjestenjaKategorije", "ObavjestenjaKategorije")
-                        .WithMany()
-                        .HasForeignKey("ObavjestenjaKategorijeID")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("saborna_crkva_API.Models.ObavjestenjaSlike", b =>
-                {
-                    b.HasOne("saborna_crkva_API.Models.Obavjestenja", "Obavjestenja")
-                        .WithMany()
-                        .HasForeignKey("ObavjestenjaID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

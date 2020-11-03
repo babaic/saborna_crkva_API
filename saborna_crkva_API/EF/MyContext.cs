@@ -43,6 +43,13 @@ namespace saborna_crkva_API.EF
             });
         }
 
-        //public DbSet<Drzava> Drzava { get; set; }
+        public DbSet<Message> Message { get; set; }
+        public DbSet<Conversation> Conversation { get; set; }
+        public DbSet<Novosti> Novosti { get; set; }
+        public DbSet<NovostiSlike> NovostiSlike { get; set; }
+        public DbSet<Obavjestenja> Obavjestenja { get; set; }
+        public DbSet<ObavjestenjaKategorije> ObavjestenjaKategorije { get; set; }
+        public DbSet<ObavjestenjaSlike> ObavjestenjaSlike { get; set; }
+        public DbSet<ObavjestenjaKategorijeObavjestenja> ObavjestenjaKategorijeObavjestenja { get; set; }
     }
 }

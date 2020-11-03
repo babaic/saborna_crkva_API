@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using saborna_crkva_API.EF;
 
 namespace saborna_crkva_API.Migrations
 {
     [DbContext(typeof(MyContext))]
-    partial class MyContextModelSnapshot : ModelSnapshot
+    [Migration("20201028191951_AddObavjestenja")]
+    partial class AddObavjestenja
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -181,11 +183,15 @@ namespace saborna_crkva_API.Migrations
 
                     b.Property<string>("Naslov");
 
+                    b.Property<int>("ObavjestenjaKategorijeID");
+
                     b.Property<byte[]>("Slika");
 
                     b.Property<string>("Text");
 
                     b.HasKey("ObavjestenjaID");
+
+                    b.HasIndex("ObavjestenjaKategorijeID");
 
                     b.ToTable("Obavjestenja");
                 });
@@ -201,25 +207,6 @@ namespace saborna_crkva_API.Migrations
                     b.HasKey("ObavjestenjaKategorijeID");
 
                     b.ToTable("ObavjestenjaKategorije");
-                });
-
-            modelBuilder.Entity("saborna_crkva_API.Models.ObavjestenjaKategorijeObavjestenja", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("ObavjestenjaID");
-
-                    b.Property<int>("ObavjestenjaKategorijeID");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ObavjestenjaID");
-
-                    b.HasIndex("ObavjestenjaKategorijeID");
-
-                    b.ToTable("ObavjestenjaKategorijeObavjestenja");
                 });
 
             modelBuilder.Entity("saborna_crkva_API.Models.ObavjestenjaSlike", b =>
@@ -401,13 +388,8 @@ namespace saborna_crkva_API.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("saborna_crkva_API.Models.ObavjestenjaKategorijeObavjestenja", b =>
+            modelBuilder.Entity("saborna_crkva_API.Models.Obavjestenja", b =>
                 {
-                    b.HasOne("saborna_crkva_API.Models.Obavjestenja", "Obavjestenja")
-                        .WithMany()
-                        .HasForeignKey("ObavjestenjaID")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.HasOne("saborna_crkva_API.Models.ObavjestenjaKategorije", "ObavjestenjaKategorije")
                         .WithMany()
                         .HasForeignKey("ObavjestenjaKategorijeID")

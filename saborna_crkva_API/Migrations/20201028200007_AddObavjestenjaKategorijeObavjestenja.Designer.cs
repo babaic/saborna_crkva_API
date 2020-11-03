@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using saborna_crkva_API.EF;
 
 namespace saborna_crkva_API.Migrations
 {
     [DbContext(typeof(MyContext))]
-    partial class MyContextModelSnapshot : ModelSnapshot
+    [Migration("20201028200007_AddObavjestenjaKategorijeObavjestenja")]
+    partial class AddObavjestenjaKategorijeObavjestenja
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -181,11 +183,15 @@ namespace saborna_crkva_API.Migrations
 
                     b.Property<string>("Naslov");
 
+                    b.Property<int>("ObavjestenjaKategorijeID");
+
                     b.Property<byte[]>("Slika");
 
                     b.Property<string>("Text");
 
                     b.HasKey("ObavjestenjaID");
+
+                    b.HasIndex("ObavjestenjaKategorijeID");
 
                     b.ToTable("Obavjestenja");
                 });
@@ -398,6 +404,14 @@ namespace saborna_crkva_API.Migrations
                     b.HasOne("saborna_crkva_API.Models.Novosti", "Novosti")
                         .WithMany()
                         .HasForeignKey("NovostiID")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("saborna_crkva_API.Models.Obavjestenja", b =>
+                {
+                    b.HasOne("saborna_crkva_API.Models.ObavjestenjaKategorije", "ObavjestenjaKategorije")
+                        .WithMany()
+                        .HasForeignKey("ObavjestenjaKategorijeID")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

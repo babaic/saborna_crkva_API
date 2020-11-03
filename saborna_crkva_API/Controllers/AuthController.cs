@@ -58,7 +58,7 @@ namespace saborna_crkva_API.Controllers
             return new UsertoDisplay
             {
                 Id = user.Id,
-                Username = user.UserName,
+                Username = user.Ime + " " + user.Prezime,
                 Ime = user.Ime,
                 Prezime = user.Prezime,
                 Role = (await _userManager.GetRolesAsync(user)).FirstOrDefault(),
@@ -83,7 +83,8 @@ namespace saborna_crkva_API.Controllers
             return new UsertoDisplay
             {
                 Id = user.Id,
-                Username = user.UserName,
+                Username = user.Ime + " " + user.Prezime,
+                Role = (await _userManager.GetRolesAsync(user)).FirstOrDefault(),
                 Token = await GenerateJwtToken(user),
             };
         }

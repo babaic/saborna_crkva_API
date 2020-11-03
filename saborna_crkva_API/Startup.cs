@@ -16,6 +16,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using saborna_crkva_API.EF;
 using saborna_crkva_API.Models;
+using saborna_crkva_API.Services;
 
 namespace saborna_crkva_API
 {
@@ -60,6 +61,10 @@ namespace saborna_crkva_API
                         ValidateAudience = false
                     };
                 });
+
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<INovostiService, NovostiService>();
+            services.AddScoped<IObavjestenjaService, ObavjestenjaService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
