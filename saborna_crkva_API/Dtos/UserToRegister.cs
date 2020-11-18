@@ -12,5 +12,9 @@ namespace saborna_crkva_API.Dtos
         public string Email { get; set; }
         [Required]
         public string Password { get; set; }
+        [Required]
+        public string Ime { get; set; }
+        [Required]
+        public string Prezime { get; set; }
     }
 }

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using saborna_crkva_API.EF;
 
 namespace saborna_crkva_API.Migrations
 {
     [DbContext(typeof(MyContext))]
-    partial class MyContextModelSnapshot : ModelSnapshot
+    [Migration("20201109183408_AddObredZahtjev")]
+    partial class AddObredZahtjev
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -282,8 +284,6 @@ namespace saborna_crkva_API.Migrations
                     b.Property<DateTime>("Datum");
 
                     b.Property<int>("ObredKategorijaId");
-
-                    b.Property<string>("Status");
 
                     b.Property<int>("UserId");
 

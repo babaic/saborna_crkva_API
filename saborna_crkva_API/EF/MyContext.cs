@@ -52,5 +52,7 @@ namespace saborna_crkva_API.EF
         public DbSet<ObavjestenjaSlike> ObavjestenjaSlike { get; set; }
         public DbSet<ObavjestenjaKategorijeObavjestenja> ObavjestenjaKategorijeObavjestenja { get; set; }
         public DbSet<Donacije> Donacije { get; set; }
+        public DbSet<ObredKategorija> ObredKategorija { get; set; }
+        public DbSet<ObredZahtjev> ObredZahtjev { get; set; }
     }
 }

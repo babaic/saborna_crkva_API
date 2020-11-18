@@ -12,6 +12,7 @@ namespace saborna_crkva_API.Dtos
         public string Naslov { get; set; }
         public string Text { get; set; }
         public List<ObavjestenjaKategorije> Kategorije { get; set; }
+        public int KategorijaId { get; set; }
         public DateTime DatumObjavljivanja { get; set; }
         public byte[] GlavnaSlika { get; set; }
         public List<byte[]> Slike { get; set; }

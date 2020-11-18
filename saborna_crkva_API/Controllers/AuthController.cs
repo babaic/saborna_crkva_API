@@ -38,6 +38,7 @@ namespace saborna_crkva_API.Controllers
         public async Task<ActionResult<UsertoDisplay>> Register(UserToRegister userToRegister)
         {
 
+
             if (await UserExists(userToRegister.Email)) return BadRequest("Korisnik već postoji");
 
             var user = new User
@@ -45,6 +46,8 @@ namespace saborna_crkva_API.Controllers
                 UserName = userToRegister.Email.ToLower(),
                 Email = userToRegister.Email,
                 Adresa = userToRegister.Email,
+                Ime = userToRegister.Ime,
+                Prezime = userToRegister.Prezime
             };
 
             var result = await _userManager.CreateAsync(user, userToRegister.Password);
@@ -59,6 +62,7 @@ namespace saborna_crkva_API.Controllers
             {
                 Id = user.Id,
                 Username = user.Ime + " " + user.Prezime,
+                Email = user.Email,
                 Ime = user.Ime,
                 Prezime = user.Prezime,
                 Role = (await _userManager.GetRolesAsync(user)).FirstOrDefault(),
