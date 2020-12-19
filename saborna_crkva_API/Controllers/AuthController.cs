@@ -37,8 +37,6 @@ namespace saborna_crkva_API.Controllers
         [HttpPost("register")]
         public async Task<ActionResult<UsertoDisplay>> Register(UserToRegister userToRegister)
         {
-
-
             if (await UserExists(userToRegister.Email)) return BadRequest("Korisnik već postoji");
 
             var user = new User
@@ -67,7 +65,6 @@ namespace saborna_crkva_API.Controllers
                 Prezime = user.Prezime,
                 Role = (await _userManager.GetRolesAsync(user)).FirstOrDefault(),
             };
-
         }
 
         [AllowAnonymous]

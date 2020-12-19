@@ -19,6 +19,15 @@ namespace saborna_crkva_API.Services
 
         public int AddObred(ObredZahtjev obredToAdd)
         {
+            //get last obred datetime from user
+            var lastObred = _context.ObredZahtjev.Where(x => x.UserId == obredToAdd.UserId).OrderByDescending(x=>x.Id).FirstOrDefault();
+            if (lastObred != null)
+            {
+                //if (DateTime.Now <= lastObred.Datum.AddDays(1))
+                //{
+                //    return 0;
+                //}
+            }
             var obred = new ObredZahtjev
             {
                 Datum = DateTime.Now,

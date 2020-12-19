@@ -23,7 +23,6 @@ namespace saborna_crkva_API.Controllers
             _obredService = obredService;
         }
 
-        [AllowAnonymous]
         [HttpPost("addobred")]
         public ActionResult AddObred(ObredZahtjev obredToAdd)
         {
@@ -34,7 +33,6 @@ namespace saborna_crkva_API.Controllers
             return Ok(obj);
         }
 
-        [AllowAnonymous]
         [HttpGet("getobredi")]
         public ActionResult<List<ObredToDisplay>> GetObredi([FromQuery] string status, [FromQuery] int userid)
         {
@@ -42,7 +40,6 @@ namespace saborna_crkva_API.Controllers
 
             return result;
         }
-
         [AllowAnonymous]
         [HttpGet("getobredikategorije")]
         public ActionResult<List<ObredKategorija>> GetObrediKategorije([FromQuery] int userid)
@@ -50,7 +47,6 @@ namespace saborna_crkva_API.Controllers
             return _obredService.GetObrediKategorije();
         }
 
-        [AllowAnonymous]
         [HttpPut("updatestatus/{id}")]
         public async Task<ActionResult> UpdateStatusAsync(int id, ObredZahtjev obred)
         {

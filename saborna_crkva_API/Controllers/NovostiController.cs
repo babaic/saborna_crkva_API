@@ -23,7 +23,6 @@ namespace saborna_crkva_API.Controllers
             _novostiService = novostiService;
         }
 
-        [AllowAnonymous]
         [HttpGet("getnovosti")]
         public ActionResult<PageResult<NovostiToDisplay>> GetNovosti([FromQuery] PageResultQuery pageResultQuery, [FromQuery] int id)
         {
@@ -37,7 +36,6 @@ namespace saborna_crkva_API.Controllers
             return novosti;
         }
 
-        [AllowAnonymous]
         [HttpGet("getslike/{id}")]
         public ActionResult<SlikeToDisplay> GetSlike(int id)
         {

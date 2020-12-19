@@ -24,7 +24,6 @@ namespace saborna_crkva_API.Controllers
             _obavjestenjaService = obavjestenjaService;
         }
 
-        [AllowAnonymous]
         [HttpGet("getobavjestenja")]
         public ActionResult<PageResult<ObavjestenjeToDisplay>> GetObavjestenja([FromQuery] PageResultQuery pageResultQuery, [FromQuery] int kategorijaId)
         {
@@ -38,7 +37,6 @@ namespace saborna_crkva_API.Controllers
             return obavjestenja;
         }
 
-        [AllowAnonymous]
         [HttpGet("getobavjestenja/{id}")]
         public ActionResult<ObavjestenjeToDisplay> GetObavjestenjaById(int id)
         {
@@ -52,7 +50,6 @@ namespace saborna_crkva_API.Controllers
             return obavjestenje;
         }
 
-        [AllowAnonymous]
         [HttpGet("getslike/{id}")]
         public ActionResult<SlikeToDisplay> GetSlike(int id)
         {
@@ -61,7 +58,6 @@ namespace saborna_crkva_API.Controllers
             return result;
         }
 
-        [AllowAnonymous]
         [HttpGet("getkategorije")]
         public ActionResult<List<ObavjestenjaKategorije>> GetKategorije()
         {
